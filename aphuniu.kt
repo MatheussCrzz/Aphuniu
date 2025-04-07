@@ -42,20 +42,28 @@
                         
                     gravarLead(lead)
 
-            fun gravarLead(lead: Lead) {
+                fun gravarLead(lead: Lead) {
 
-                leads.add(lead)
+                    leads.add(lead)
 
-                val csvData = buildString {
-                
-                    if (leads.indexOf(lead) == 0) {
-                        appendLine("ID,Nome,Email,Telefone")
+                    val csvData = buildString {
+                    
+                        if (leads.indexOf(lead) == 0) {
+                            appendLine("ID,Nome,Email,Telefone")
+                        }
+                    
+                    leads.forEach { l ->
+                        appendLine("${l.id},${l.nome},${l.email},${l.telefone},${escolaridade},${profissao},${empresa},${origem},${dt/hr}")
                     }
-                
-                leads.forEach { l ->
-                    appendLine("${l.id},${l.nome},${l.email},${l.telefone},${escolaridade},${profissao},${empresa},${origem},${dt/hr}")
                 }
+                    File("leads.csv").writeText(csvData)
+                
+                    println("Lead cadastrado com sucesso!")
+                }
+
+                cadastrarLead()
             }
+
 
             elif opcao == '2':
                 ConsultarLead()  
