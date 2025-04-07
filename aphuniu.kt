@@ -1,3 +1,6 @@
+import java.io.File
+import java.io.FileWriter
+
     def mostrarMenu():
         while True:
             print("===== Aphuniu =====")
@@ -53,7 +56,7 @@
                         }
                     
                     leads.forEach { l ->
-                        appendLine("${l.id},${l.nome},${l.email},${l.telefone},${escolaridade},${profissao},${empresa},${origem},${dt/hr}")
+                        appendLine("${l.id},${l.nome},${l.email},${l.telefone},${l.escolaridade},${l.profissao},${l.empresa},${l.origem},${l.dt/hr}")
                     }
                 }
                     File("leads.csv").writeText(csvData)
@@ -64,6 +67,25 @@
                 cadastrarLead()
             }
 
+            val funis = mutableListOf<Lead>()
+
+            fun gerarFunil(lead: Lead) {
+                funis.add(lead)
+                gravarFunil() 
+            }
+
+            fun gravarFunil() {
+                val file = File("funis.csv")
+                val fileWriter = FileWriter(file, false)
+
+                fileWriter.write("ID,Nome,Email, telefone, escolaridade, profissao, empresa, origem, dt/hr")
+
+                for (lead in funis) {
+                    fileWriter.write("${lead.id},${lead.nome},${lead.email},${lead.telefone},${lead.escolaridade},${lead.profissao},${lead.empresa},${lead.origem},${lead.dt/hr}")
+                }
+
+                fileWriter.close()  
+            }
 
             elif opcao == '2':
                 ConsultarLead()  
