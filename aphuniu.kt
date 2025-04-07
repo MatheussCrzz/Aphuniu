@@ -1,4 +1,3 @@
-fun main(){}    
     def mostrarMenu():
         while True:
             print("===== Aphuniu =====")
@@ -13,7 +12,51 @@ fun main(){}
             opcao = input("Opção: ")
 
             if opcao == '1':
-                CadastrarLead()
+                CadastrarLead():
+                    val id = leads.size + 1
+                    print("Digite o nome: ")
+                    val nome = readLine() ?: ""
+                        
+                    print("Digite o e-mail: ")
+                    val email = readLine() ?: ""
+                        
+                    print("Digite o telefone: ")
+                    val telefone = readLine() ?: ""
+
+                    print("Digite a escolaridade: ")
+                    val escolaridade = readLine() ?: ""
+
+                    print("Digite a profissão: ")
+                    val profissao = readLine() ?: ""
+
+                    print("Digite a Empresa: ")
+                    val empresa = readLine() ?: ""
+
+                    print("Digite a origem do lead: ")
+                    val origem = readLine() ?: ""
+
+                    print("Digite a data e hora do cadastro: ")
+                    val dt/hr = readLine() ?: ""
+
+                    val lead = Lead(id, nome, email, telefone, escolaridade, profissao, empresa, origem, dt/hr)
+                        
+                    gravarLead(lead)
+
+            fun gravarLead(lead: Lead) {
+
+                leads.add(lead)
+
+                val csvData = buildString {
+                
+                    if (leads.indexOf(lead) == 0) {
+                        appendLine("ID,Nome,Email,Telefone")
+                    }
+                
+                leads.forEach { l ->
+                    appendLine("${l.id},${l.nome},${l.email},${l.telefone},${escolaridade},${profissao},${empresa},${origem},${dt/hr}")
+                }
+            }
+
             elif opcao == '2':
                 ConsultarLead()  
             elif opcao == '3':
